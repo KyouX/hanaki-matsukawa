@@ -1,6 +1,6 @@
 import React from 'react';
-import CartWidget from '../Icons/CartWidget';
-import HamburgerIcon from '../Icons/Hamburger';
+import CartWidget from '../Iconos/CartWidget';
+import HamburgerIcon from '../Iconos/Hamburger';
 import NavItem from './NavItem';
 
 
