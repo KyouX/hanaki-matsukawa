@@ -1,4 +1,12 @@
 /* ./src/index.css */
+@font-face {
+    font-family: "Paddington";
+    src: url("./assets/fonts/paddington.ttf");
+}
+@font-face {
+    font-family: "Paloseco medium";
+    src: url("./assets/fonts/paloseco-medium.ttf");
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

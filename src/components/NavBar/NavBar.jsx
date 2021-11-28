@@ -1,5 +1,6 @@
 import React from 'react';
-import HamburgerIcon from '../icons/hamburger';
+import CartWidget from '../Icons/CartWidget';
+import HamburgerIcon from '../Icons/Hamburger';
 import NavItem from './NavItem';
 
 
@@ -7,21 +8,20 @@ const NavBar = () => {
     const navItems = ["Hanaki", "Nuestra historia", "Productos", "Contacto"]
 
     return (
-        <header className="fixed top-0 inset-x-0 w-full flex flex-row bg-white px-8">
+        <header className="fixed top-0 inset-x-0 w-full flex flex-row bg-white px-8 font-palosecomedium">
             <div className="my-auto md:hidden">
                 <HamburgerIcon />
             </div>
             <a id="logo" href="index.html" className="mx-auto w-16  md:w-24">
                 <img src="logo.png" className="w-full object-contain" alt="logo" />
             </a>
-            <div className="hidden md:flex flex-row mx-auto pl-16 pr-8 font-semibold">
+            <div className="hidden md:flex flex-row mx-auto pl-16 pr-8">
                 {navItems.map((item, index) => (
                     <NavItem text={item} key={`child-${index}`} />
                 ))}
             </div>
-            {/* cambiar ícono hamburguesa por carrito */}
-            <div className="my-auto invisible md:hidden">
-                <HamburgerIcon />
+            <div className="my-auto cursor-pointer">
+                <CartWidget />
             </div>
 
 

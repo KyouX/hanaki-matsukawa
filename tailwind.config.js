@@ -5,8 +5,13 @@ module.exports = {
     extend: {
       colors: {
         verde: "#8CA178",
-        verdeclaro: "#d0dbcf"
-      }
+        verdeclaro: "#d0dbcf",
+        beige: "#f9f7f0"
+      },
+      fontFamily: {
+        paddington: ["Paddington", "Helvetica", "Arial", "sans-serif"],
+        palosecomedium: ["Paloseco medium", "Helvetica", "Arial", "sans-serif"],
+      },
     },
   },
   variants: {
