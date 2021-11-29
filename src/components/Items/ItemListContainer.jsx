@@ -1,6 +1,6 @@
-import imgLeft from '../../assets/img/hanaki-left.jpg'
-import imgCenter from '../../assets/img/hanaki-center.jpg'
-import imgRight from '../../assets/img/hanaki-right.jpg'
+import imgLeft from '../../assets/img/hanaki-left.webp'
+import imgCenter from '../../assets/img/hanaki-center.webp'
+import imgRight from '../../assets/img/hanaki-right.webp'
 
 const ItemListContainer = ({ greeting }) => {
     return (

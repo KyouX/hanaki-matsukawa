@@ -2,10 +2,12 @@
 @font-face {
     font-family: "Paddington";
     src: url("./assets/fonts/paddington.ttf");
+    font-display: swap;
 }
 @font-face {
     font-family: "Paloseco medium";
     src: url("./assets/fonts/paloseco-medium.ttf");
+    font-display: swap;
 }
 @tailwind base;
 @tailwind components;
