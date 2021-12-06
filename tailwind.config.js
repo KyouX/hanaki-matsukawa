@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         verde: "#8CA178",
         verdeclaro: "#d0dbcf",
+        verdemedio: "#bec9bd",
         beige: "#f9f7f0"
       },
       fontFamily: {
