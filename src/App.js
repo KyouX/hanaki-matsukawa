@@ -10,7 +10,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-beige">
+    <div className="w-full min-h-screen bg-beige">
       <NavBar />
       <ItemListContainer greeting="Hola, muy pronto te traeremos las mejores experiencias con matcha.">
         <ItemCount stock={10} initial={1} onAdd={onAdd} />

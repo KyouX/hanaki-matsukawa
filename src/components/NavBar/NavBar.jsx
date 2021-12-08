@@ -8,7 +8,7 @@ const NavBar = () => {
     const navItems = ["Hanaki", "Nuestra historia", "Productos", "Contacto"]
 
     return (
-        <header className="fixed top-0 inset-x-0 w-full flex flex-row bg-white px-8 font-palosecomedium">
+        <header className="fixed z-50 top-0 inset-x-0 w-full flex flex-row bg-white px-8 font-palosecomedium">
             <div className="my-auto md:hidden">
                 <HamburgerIcon />
             </div>
