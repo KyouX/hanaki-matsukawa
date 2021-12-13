@@ -1,4 +1,4 @@
-import imgSet from '../../assets/img/set.PNG'
+// import imgSet from '../../assets/img/set.PNG'
 import { useState } from 'react';
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -19,11 +19,11 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
 
     return (
-        <div className="flex flex-col w-80">
-            <div>
+        <div className="flex flex-col w-full">
+            {/* <div>
                 <img className="rounded shadow-md" src={imgSet} alt="set de matcha" />
-            </div>
-            <div className="px-4 py-2">
+            </div> */}
+            <div className="py-2">
                 <div className="flex flex-row w-full bg-white rounded border">
                     <button className="w-1/5 py-2 px-4" onClick={restarCount}>
                         -
@@ -37,7 +37,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
                 </div>
             </div>
-            <div className="px-4">
+            <div>
                 <button className="bg-verdeclaro py-2 px-4 w-full rounded shadow-md hover:bg-verdemedio" onClick={() => onAdd(count)}>
                     Agregar al carrito
                 </button>
