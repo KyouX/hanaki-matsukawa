@@ -8,6 +8,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Cart from './components/Cart/Cart';
 
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
 
             <Route path="/item/:id" element={
               <ItemDetailContainer />
+            } />
+
+            <Route path="/cart" element={
+              <Cart />
             } />
 
           </Routes>

@@ -1,6 +1,16 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
-const ItemDetail = ({ item: { nombre, img, alt, stock, desc, precio } }) => {
+const ItemDetail = ({ item: { id, nombre, img, alt, stock, desc, precio } }) => {
+
+    const [agregado, setAgregado] = useState(false);
+
+    const agregarItem = (count) => {
+
+        setAgregado(true)
+
+    }
 
     return (
         <div className={`flex flex-row w-1/2 mx-auto bg-white rounded-md shadow-md ${img ? '' : 'animate-pulse'}`}>
@@ -18,7 +28,18 @@ const ItemDetail = ({ item: { nombre, img, alt, stock, desc, precio } }) => {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 pb-8 pr-8">
 
-                    <ItemCount stock={stock} initial={1} />
+                    {
+                        !agregado
+                            ?
+                            <ItemCount stock={stock} initial={1} onAdd={agregarItem} />
+                            :
+                            <Link to="/cart">
+                                <button className="bg-verdeclaro py-2 px-4 w-full rounded shadow-md hover:bg-verdemedio">
+                                    Finalizar compra
+                                </button>
+                            </Link>
+                    }
+
                 </div>
             </div>
         </div>
