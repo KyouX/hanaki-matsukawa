@@ -21,9 +21,9 @@ const NavBar = () => {
                     <NavItem text={item.label} key={`child-${index}`} link={item.link}/>
                 ))}
             </div>
-            <div className="my-auto cursor-pointer">
+            <Link to="/cart" className="my-auto cursor-pointer">
                 <CartWidget />
-            </div>
+            </Link>
 
 
         </header>

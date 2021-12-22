@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
+import { CartContext } from "../../Context/CartContext";
 
 const ItemDetail = ({ item: { id, nombre, img, alt, stock, desc, precio } }) => {
 
+    const { addItem } = useContext(CartContext);
     const [agregado, setAgregado] = useState(false);
 
     const agregarItem = (count) => {
-
+        addItem({ id: id, name: nombre, price: precio, quantity: count })
         setAgregado(true)
-
     }
 
     return (
@@ -26,21 +27,22 @@ const ItemDetail = ({ item: { id, nombre, img, alt, stock, desc, precio } }) => 
                     </div>
 
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 pb-8 pr-8">
+                {img &&
+                    <div className="absolute bottom-0 left-0 right-0 pb-8 pr-8">
 
-                    {
-                        !agregado
-                            ?
-                            <ItemCount stock={stock} initial={1} onAdd={agregarItem} />
-                            :
-                            <Link to="/cart">
-                                <button className="bg-verdeclaro py-2 px-4 w-full rounded shadow-md hover:bg-verdemedio">
-                                    Finalizar compra
-                                </button>
-                            </Link>
-                    }
-
-                </div>
+                        {
+                            !agregado
+                                ?
+                                <ItemCount stock={stock} initial={1} onAdd={agregarItem} />
+                                :
+                                <Link to="/cart">
+                                    <button className="bg-verdeclaro py-2 px-4 w-full rounded shadow-md hover:bg-verdemedio">
+                                        Finalizar compra
+                                    </button>
+                                </Link>
+                        }
+                    </div>
+                }
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ import {
   Routes
 } from "react-router-dom";
 import Cart from './components/Cart/Cart';
+import CartContextProvider from './Context/CartContext';
 
 
 function App() {
@@ -18,34 +19,37 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="w-full min bg-beige pb-24">
-        <NavBar />
-        <div className='w-full h-screen flex flex-col items-center justify-center'>
-          <Routes>
+    <CartContextProvider>
+      <Router>
+        <div className="w-full min bg-beige pb-24">
+          <NavBar />
+          <div className='w-full h-screen flex flex-col items-center justify-center'>
+            <Routes>
 
-            <Route path="/" element={
-              <ItemListContainer greeting="Hola, muy pronto te traeremos las mejores experiencias con matcha." />
-            } />
+              <Route path="/" element={
+                <ItemListContainer greeting="Hola, muy pronto te traeremos las mejores experiencias con matcha." />
+              } />
 
-            <Route path="/category/:id" element={
-              <ItemListContainer categorized={true} greeting="Hola, muy pronto te traeremos las mejores experiencias con matcha." />
-            } />
+              <Route path="/category/:id" element={
+                <ItemListContainer categorized={true} greeting="Hola, muy pronto te traeremos las mejores experiencias con matcha." />
+              } />
 
-            <Route path="/item/:id" element={
-              <ItemDetailContainer />
-            } />
+              <Route path="/item/:id" element={
+                <ItemDetailContainer />
+              } />
 
-            <Route path="/cart" element={
-              <Cart />
-            } />
+              <Route path="/cart" element={
+                <Cart />
+              } />
 
-          </Routes>
+            </Routes>
+          </div>
+
         </div>
 
-      </div>
+      </Router>
+    </CartContextProvider>
 
-    </Router>
   );
 }
 
