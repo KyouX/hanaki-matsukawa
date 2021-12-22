@@ -27,13 +27,15 @@ const CartContextProvider = ({ children }) => {
         }
 
         setItemCount(itemCount + item.quantity)
-        localStorage.setItem("carrito",JSON.stringify(temp))
+        localStorage.setItem("carrito", JSON.stringify(temp))
         setCartList(temp)
     }
 
-    useEffect(()=>{
-        setCartList(JSON.parse(localStorage.getItem("carrito")) || [])
-    },[])
+    useEffect(() => {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || []
+        setItemCount(carrito.reduce((accum, curr) => accum + curr.quantity, 0))
+        setCartList(carrito)
+    }, [])
 
     return (
         <CartContext.Provider value={{ cartList, itemCount, addItem }}>
