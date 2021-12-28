@@ -26,19 +26,29 @@ const CartContextProvider = ({ children }) => {
             temp.push(item);
         }
 
-        setItemCount(itemCount + item.quantity)
         localStorage.setItem("carrito", JSON.stringify(temp))
         setCartList(temp)
     }
 
+    const removeItem = (id) => {
+
+        const temp = cartList.filter(item => item.id !== id)
+        setCartList(temp)
+        localStorage.setItem("carrito", JSON.stringify(temp))
+
+    }
+
+    useEffect(() => {
+        setItemCount(cartList.reduce((a, b) => a + b.quantity, 0))
+    }, [cartList])
+
     useEffect(() => {
         const carrito = JSON.parse(localStorage.getItem("carrito")) || []
-        setItemCount(carrito.reduce((accum, curr) => accum + curr.quantity, 0))
         setCartList(carrito)
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartList, itemCount, addItem }}>
+        <CartContext.Provider value={{ cartList, itemCount, addItem, removeItem }}>
             {children}
         </CartContext.Provider >
     )

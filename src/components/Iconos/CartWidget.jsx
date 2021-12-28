@@ -3,7 +3,7 @@ import { CartContext } from "../../Context/CartContext";
 
 const CartWidget = () => {
 
-const {itemCount} = useContext(CartContext);
+    const { itemCount } = useContext(CartContext);
 
     return (
         <div className="flex flex-row flex-wrap">
