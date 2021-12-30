@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../../Context/CartContext";
 
-const ItemDetail = ({ item: { id, nombre, img, alt, stock, desc, precio } }) => {
+const ItemDetail = ({ item: { id, name, img, alt, stock, desc, price } }) => {
+
+    console.log(id)
 
     const { addItem } = useContext(CartContext);
     const [agregado, setAgregado] = useState(false);
 
     const agregarItem = (count) => {
-        addItem({ id: id, name: nombre, price: precio, quantity: count })
+        addItem({ id: id, name: name, price: price, quantity: count })
         setAgregado(true)
     }
 
@@ -20,10 +22,10 @@ const ItemDetail = ({ item: { id, nombre, img, alt, stock, desc, precio } }) => 
             </div>
             <div className="relative flex flex-col space-y-2 w-5/12 pr-8 pt-8 pb-48">
                 <div className="flex flex-col divide-y-2 divide-verdeclaro space-y-2 w-full">
-                    <div className="font-paddington text-4xl" >{nombre || "Cargando el producto"}</div>
+                    <div className="font-paddington text-4xl" >{name || "Cargando el producto"}</div>
                     <div className="flex flex-col space-y-4 pt-8 text-xl">
                         <div>{desc || "Cargando la descripción de tu producto"}</div>
-                        <div className="text-5xl">S/{precio || "-"}</div>
+                        <div className="text-5xl">S/{price || "-"}</div>
                     </div>
 
                 </div>

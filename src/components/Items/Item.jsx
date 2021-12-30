@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const Item = ({ item: { id, nombre, img, alt, desc, stock } }) => {
+const Item = ({ item: { id, name, img, alt, desc, stock } }) => {
     return (
         <div className="flex flex-col w-80 bg-white rounded-md shadow-md relative">
             <div>
@@ -7,7 +7,7 @@ const Item = ({ item: { id, nombre, img, alt, desc, stock } }) => {
             </div>
             <div className="p-4">
                 <div className="text-center font-palosecomedium ">
-                    {nombre}
+                    {name}
                 </div>
                 <div className="mb-20">
                     {desc}

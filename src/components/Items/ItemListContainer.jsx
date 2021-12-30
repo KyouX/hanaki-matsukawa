@@ -1,9 +1,8 @@
-import imgLeft from '../../assets/img/hanaki-left.webp'
-import imgCenter from '../../assets/img/hanaki-center.webp'
-import imgRight from '../../assets/img/hanaki-right.webp'
+//import imgLeft from '../../assets/img/hanaki-left.webp'
+//import imgCenter from '../../assets/img/hanaki-center.webp'
+//import imgRight from '../../assets/img/hanaki-right.webp'
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 import ItemList from './ItemList'
-import imgSet from '../../assets/img/set.PNG'
-import imgMatcha from '../../assets/img/matcha.PNG'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -14,26 +13,24 @@ const ItemListContainer = ({ greeting, categorized }) => {
 
     useEffect(() => {
 
-        const obtenerDatos = new Promise((resolve, reject) => {
-            const productos = [
-                { id: "A01", nombre: "Set de matcha", img: imgSet, alt: "Set de matcha", desc: "Utensilios para preparar matcha de manera tradicional", stock: 15, category: "sets" },
-                { id: "A02", nombre: "Guía de meditación", img: imgCenter, alt: "Guía de meditación", desc: "Libro de meditación guiada", stock: 25, category: "meditacion" },
-                { id: "A03", nombre: "Matcha tres variedades", img: imgMatcha, alt: "3 Variedades de matcha", desc: "Matcha Jade, Matcha Ceremonial y Matcha Clásico", stock: 100, category: "matcha" }
-            ]
-            if (categorized && category) {
-                setTimeout(() => {
-                    resolve(productos.filter(producto => producto.category === category))
-                }, 2000);
-            }else if (!categorized){
-                setTimeout(() => {
-                    resolve(productos)
-                }, 2000);
-            }else{
-                resolve([])
-            }
+        const db = getFirestore();
 
-        });
-        obtenerDatos.then(setItems)
+        const itemsCollection = collection(db, "items");
+
+        if (categorized && category) {
+            const q = query(itemsCollection, where("category", "==", category));
+            getDocs(q)
+                .then(querySnapshot => setItems(querySnapshot.docs.map(item => ({ id: item.id, ...item.data() }))))
+
+        } else if (!categorized) {
+            getDocs(itemsCollection)
+                .then(resp => setItems(resp.docs.map(item => ({ id: item.id, ...item.data() }))))
+        } else {
+            setItems([]);
+        }
+
+
+
     }, [category])
 
     return (
