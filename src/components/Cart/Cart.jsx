@@ -1,15 +1,31 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useState } from "react"
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import Trash from "../Iconos/Trash";
-
-
+import OrderForm from "./OrderForm";
 
 const Cart = () => {
 
-    const { cartList: items, removeItem } = useContext(CartContext);
+    const [visibility, setVisibility] = useState(false);
 
-    const acum = items.reduce((a, b)=> a + b.quantity * b.price, 0)
+    const { cartList: items, removeItem, clearCart } = useContext(CartContext);
+
+    const acum = items.reduce((a, b) => a + b.quantity * b.price, 0)
+
+    //Objeto Order
+    let order = { }
+    order.buyer = {}
+    order.total = acum;
+    order.items = items.map (cartItem => {
+        const id = cartItem.id;
+        const name = cartItem.name;
+        const quantity = cartItem.quantity;
+        const subtotal = cartItem.price * cartItem.quantity;
+
+        console.log(order);
+        return {id, name, quantity, subtotal}
+    })
+
 
     return (
         <div className="">
@@ -50,7 +66,6 @@ const Cart = () => {
                                                     <Trash />
                                                 </button>
                                             </td>
-
                                         </tr>
                                     )
                                 })
@@ -61,6 +76,12 @@ const Cart = () => {
                         <div className="w-full py-2 bg-white text-lg text-center font-paddington rounded-md">
                             TOTAL: S/{acum}
                         </div>
+                    </div>
+                    <div className="flex justify-center w-full">
+                        <button className="bg-verdeclaro py-2 px-4 w-1/3 rounded shadow-md hover:bg-verdemedio" onClick={ () => setVisibility(true)}>
+                            Finalizar compra
+                        </button>
+                        <OrderForm visible={visibility} setVisibility={setVisibility} order={order} clearCart={clearCart}/>
                     </div>
                 </div> ||
                 <div>
@@ -76,11 +97,7 @@ const Cart = () => {
 
                     </div>
                 </div>
-
             }
-
-
-
         </div>
     )
 }

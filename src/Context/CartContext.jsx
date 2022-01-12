@@ -38,6 +38,11 @@ const CartContextProvider = ({ children }) => {
 
     }
 
+    const clearCart = () => {
+        const temp = [];
+        setCartList(temp);
+    }
+
     useEffect(() => {
         setItemCount(cartList.reduce((a, b) => a + b.quantity, 0))
     }, [cartList])
@@ -48,7 +53,7 @@ const CartContextProvider = ({ children }) => {
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartList, itemCount, addItem, removeItem }}>
+        <CartContext.Provider value={{ cartList, itemCount, addItem, removeItem, clearCart }}>
             {children}
         </CartContext.Provider >
     )
