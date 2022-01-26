@@ -1,5 +1,4 @@
 import './App.css';
-import ItemCount from './components/Items/ItemCount';
 import ItemDetailContainer from './components/Items/ItemDetailContainer';
 import ItemListContainer from './components/Items/ItemListContainer';
 import NavBar from './components/NavBar/NavBar'
@@ -10,14 +9,9 @@ import {
 } from "react-router-dom";
 import Cart from './components/Cart/Cart';
 import CartContextProvider from './Context/CartContext';
-import OrderForm from './components/Cart/OrderForm';
 
 
 function App() {
-
-  const onAdd = (cantidad) => {
-    console.log('se ha agregado ' + cantidad)
-  }
 
   return (
     <CartContextProvider>

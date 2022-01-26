@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { useContext, useState } from "react"
 import { CartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import Trash from "../Iconos/Trash";
@@ -22,7 +22,6 @@ const Cart = () => {
         const quantity = cartItem.quantity;
         const subtotal = cartItem.price * cartItem.quantity;
 
-        console.log(order);
         return {id, name, quantity, subtotal}
     })
 
@@ -33,7 +32,7 @@ const Cart = () => {
                 Carrito de compras
             </div>
             {
-                items.length > 0 &&
+                items.length > 0 ?
                 <div>
                     <table className="table-auto bg-white rounded-md">
                         <thead className="border-b-4 border-beige">
@@ -51,9 +50,9 @@ const Cart = () => {
                         </thead>
                         <tbody className="">
                             {
-                                items.map(item => {
+                                items.map((item, i) => {
                                     return (
-                                        <tr className="border-b-2 border-beige">
+                                        <tr className="border-b-2 border-beige" key={i}>
                                             <td className="py-4 px-16">
                                                 {item.name}
                                             </td>
@@ -83,7 +82,7 @@ const Cart = () => {
                         </button>
                         <OrderForm visible={visibility} setVisibility={setVisibility} order={order} clearCart={clearCart}/>
                     </div>
-                </div> ||
+                </div> :
                 <div>
                     <div className="font-palosecomedium text-lg text-center">
                         Tu carrito está vacío.

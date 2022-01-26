@@ -1,18 +1,16 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../../Context/CartContext";
 
 const ItemDetail = ({ item: { id, name, img, alt, stock, desc, price } }) => {
 
-    console.log(id)
+    const { addItem: addToContext} = useContext(CartContext);
+    const [added, setAdded] = useState(false);
 
-    const { addItem } = useContext(CartContext);
-    const [agregado, setAgregado] = useState(false);
-
-    const agregarItem = (count) => {
-        addItem({ id: id, name: name, price: price, quantity: count })
-        setAgregado(true)
+    const addItem = (count) => {
+        addToContext({ id: id, name: name, price: price, quantity: count })
+        setAdded(true)
     }
 
     return (
@@ -33,9 +31,9 @@ const ItemDetail = ({ item: { id, name, img, alt, stock, desc, price } }) => {
                     <div className="absolute bottom-0 left-0 right-0 pb-8 pr-8">
 
                         {
-                            !agregado
+                            !added
                                 ?
-                                <ItemCount stock={stock} initial={1} onAdd={agregarItem} />
+                                <ItemCount stock={stock} initial={1} onAdd={addItem} />
                                 :
                                 <Link to="/cart">
                                     <button className="bg-verdeclaro py-2 px-4 w-full rounded shadow-md hover:bg-verdemedio">

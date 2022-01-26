@@ -30,16 +30,4 @@ const NavBar = () => {
     )
 }
 
-/*
-const objeto = {
-    llave1: valor1,
-    llave2: valor2
-}
-
-// const llave1 = objeto.llave1;
-
-const { llave1 } = objeto
-
-
-*/
 export default NavBar;
