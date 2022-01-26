@@ -19,9 +19,6 @@ const OrderForm = ({ visible, setVisibility, order, clearCart }) => {
     const generateOrder = (e) => {
         e.preventDefault();
 
-        order.date = Timestamp.fromDate(new Date());
-        order.buyer = buyer;
-
         let error = false;
         const errors = {}
 
@@ -62,7 +59,11 @@ const OrderForm = ({ visible, setVisibility, order, clearCart }) => {
         const db = getFirestore();
         const orderCollection = collection(db, 'orders');
         //Add order
-        addDoc(orderCollection, order)
+        addDoc(orderCollection, {
+            ...order,
+            date: Timestamp.fromDate(new Date()),
+            buyer: { name: buyer.name, email: buyer.email, phone: buyer.phone }
+        })
             .then(resp => setOrderId(resp.id))
             .catch(err => console.log(err))
             .finally(() => {
@@ -82,28 +83,28 @@ const OrderForm = ({ visible, setVisibility, order, clearCart }) => {
                     <div className="pb-2 font-semibold">
                         Nombre
                     </div>
-                    <input name="name" className="border w-full rounded-md pt-2 px-4 mb-2" value={buyer.name} onChange={handleChange} type="text"/>
+                    <input name="name" className="border w-full rounded-md pt-2 px-4 mb-2" value={buyer.name} onChange={handleChange} type="text" />
                     {
                         validationError.name && <div className="text-sm text-red-500 pb-2">Nombre inválido: ingrese solo letras y espacios</div>
                     }
                     <div className="pb-2 font-semibold">
                         Correo
                     </div>
-                    <input name="email" className="border w-full rounded-md pt-2 px-4 mb-2" type="email" value={buyer.email} onChange={handleChange}/>
+                    <input name="email" className="border w-full rounded-md pt-2 px-4 mb-2" type="email" value={buyer.email} onChange={handleChange} />
                     {
                         validationError.email && <div className="text-sm text-red-500 pb-2">Ingrese un correo válido</div>
                     }
                     <div className="pb-2 font-semibold">
                         Correo nuevamente
                     </div>
-                    <input className="border w-full rounded-md pt-2 px-4 mb-2" type="email" name="confirmation" value={buyer.confirmation} onChange={handleChange}/>
+                    <input className="border w-full rounded-md pt-2 px-4 mb-2" type="email" name="confirmation" value={buyer.confirmation} onChange={handleChange} />
                     {
                         validationError.confirmation && <div className="text-sm text-red-500 pb-2">Los correos deben ser iguales</div>
                     }
                     <div className="pb-2 font-semibold">
                         Teléfono
                     </div>
-                    <input name="phone" className="border w-full rounded-md pt-2 px-4 mb-2" value={buyer.phone} onChange={handleChange} type="phone"/>
+                    <input name="phone" className="border w-full rounded-md pt-2 px-4 mb-2" value={buyer.phone} onChange={handleChange} type="phone" />
                     {
                         validationError.phone && <div className="text-sm text-red-500 pb-2">Teléfono inválido: ingrese solo números</div>
                     }
